@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | UniLabs Tech</title>
+  <meta name="description" content="UniLabs offers expert optical engineering consultation, polarisation research services, and comprehensive business support for photonics applications." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Service cards ── */
+    .services-main {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+    .svc-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition);
+    }
+    .svc-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(26,110,245,0.1);
+      transform: translateY(-3px);
+    }
+    .svc-card .icon-box { margin-bottom: 1.5rem; }
+    .svc-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+    .svc-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; flex: 1; }
+    .svc-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.84rem; font-weight: 600; color: var(--accent);
+      margin-top: 1.5rem;
+      transition: gap var(--transition);
+    }
+    .svc-card:hover .svc-card-link { gap: 10px; }
+
+    /* ── How we work ── */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+    }
+    .process-step { text-align: center; position: relative; }
+    .step-num {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--accent), var(--cyan));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; font-weight: 800; color: white;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 4px 16px rgba(26,110,245,0.3);
+    }
+    .process-step h4 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .process-step p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── Expertise detail ── */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .expertise-panel {
+      background: linear-gradient(140deg, var(--primary), var(--primary-light));
+      border-radius: var(--radius-lg);
+      padding: 2.75rem;
+    }
+    .expertise-panel h3 { font-size: 1.4rem; color: white; margin-bottom: 0.75rem; line-height: 1.35; }
+    .expertise-panel p { font-size: 0.9rem; color: #94a3b8; line-height: 1.8; margin-bottom: 1.5rem; }
+    .expertise-list { display: flex; flex-direction: column; gap: 1rem; }
+    .expertise-item {
+      display: flex; gap: 0.85rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-sm);
+    }
+    .expertise-item h5 { font-size: 0.875rem; color: white; margin-bottom: 0.25rem; }
+    .expertise-item p { font-size: 0.8rem; color: #94a3b8; line-height: 1.55; margin: 0; }
+    .expertise-icon { flex-shrink: 0; margin-top: 2px; }
+    .expertise-icon svg { width: 16px; height: 16px; fill: #60a5fa; }
+
+    .expertise-features { display: flex; flex-direction: column; gap: 1rem; }
+    .ef-item {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+    .ef-item:hover { border-color: var(--accent); background: var(--accent-light); }
+    .ef-check {
+      width: 22px; height: 22px;
+      background: #d1fae5; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .ef-check svg { width: 11px; height: 11px; fill: #059669; }
+    .ef-item h5 { font-size: 0.9rem; margin-bottom: 0.25rem; }
+    .ef-item p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* ── Testimonial/quote band ── */
+    .quote-band {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+    .quote-band blockquote {
+      font-size: 1.1rem;
+      color: var(--primary);
+      font-weight: 500;
+      line-height: 1.75;
+      font-style: italic;
+    }
+    .quote-band cite { display: block; font-size: 0.82rem; color: var(--text-muted); margin-top: 0.75rem; font-style: normal; }
+
+    @media (max-width: 960px) {
+      .services-main { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .process-steps::before { display: none; }
+      .expertise-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.jpeg" alt="UniLabs Tech" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="nav-cta"><a href="contact.html">Get in Touch</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="label">Services</span>
+    <h1>Expert optical engineering & consultation</h1>
+    <p>Our experienced team works closely with clients to understand their requirements and deliver customised photonics solutions — from initial design to after-sales support.</p>
+  </div>
+</div>
+
+<!-- SERVICES OVERVIEW -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">What We Offer</span>
+      <h2 class="section-title">Our core services</h2>
+      <p class="section-desc">From optical system design to pressure sensing consultation, UniLabs provides comprehensive technical support throughout every stage of your project.</p>
+    </div>
+    <div class="services-main">
+
+      <div class="svc-card" data-reveal>
+        <div class="icon-box grad">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <h3>Optical Design Consultation</h3>
+        <p>We work with you from initial concept through to implementation, applying deep knowledge of optical physics, photonics, and laser systems. Our consultation covers system architecture, component selection, integration, and performance verification.</p>
+        <a href="contact.html" class="svc-card-link">Get a consultation →</a>
+      </div>
+
+      <div class="svc-card" data-reveal>
+        <div class="icon-box grad">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Polarisation & Crystal Optics</h3>
+        <p>Specialised expertise in light polarisation research and crystal optics. We support the study of propagation characteristics, generation and testing of polarised light, conversion between polarisation states, Jones matrix applications, and interference phenomena.</p>
+        <a href="contact.html" class="svc-card-link">Learn more →</a>
+      </div>
+
+      <div class="svc-card" data-reveal>
+        <div class="icon-box grad">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Business Support Services</h3>
+        <p>As your representative agency, we handle the full buying journey: product sourcing, procurement, import, and comprehensive after-sales support. We act as your local technical partner throughout the lifetime of the products you purchase through us.</p>
+        <a href="contact.html" class="svc-card-link">Talk to us →</a>
+      </div>
+
+    </div>
+
+    <!-- How we work -->
+    <div class="section-header">
+      <span class="label">Our Approach</span>
+      <h2 class="section-title">How we work with you</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step" data-reveal>
+        <div class="step-num">1</div>
+        <h4>Discovery</h4>
+        <p>We start by understanding your project requirements, application, and performance targets in detail.</p>
+      </div>
+      <div class="process-step" data-reveal>
+        <div class="step-num">2</div>
+        <h4>Recommendation</h4>
+        <p>We identify the most suitable products and approaches from our partner portfolio, tailored to your needs.</p>
+      </div>
+      <div class="process-step" data-reveal>
+        <div class="step-num">3</div>
+        <h4>Delivery</h4>
+        <p>We manage procurement and logistics, ensuring your equipment arrives on time and correctly configured.</p>
+      </div>
+      <div class="process-step" data-reveal>
+        <div class="step-num">4</div>
+        <h4>Support</h4>
+        <p>Ongoing technical assistance and after-sales support throughout the full lifetime of your equipment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE DETAIL -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="expertise-grid">
+      <div class="expertise-panel">
+        <h3>Deep photonics expertise you can rely on</h3>
+        <p>Our team brings hands-on expertise in optical physics and photonics engineering, enabling us to go far beyond simple product supply — we're a genuine technical partner.</p>
+        <div class="expertise-list">
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <h5>Mid-Infrared Spectroscopy</h5>
+              <p>Practical expertise in QCL-based spectroscopy systems and molecular fingerprinting applications.</p>
+            </div>
+          </div>
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            </div>
+            <div>
+              <h5>Optical Alignment & Integration</h5>
+              <p>Guidance on beam alignment, optical mounts, and system integration for complex photonic setups.</p>
+            </div>
+          </div>
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            </div>
+            <div>
+              <h5>Crystal Optics & Polarimetry</h5>
+              <p>Specialist knowledge in polarisation-based optical experiments and optoelectronics curriculum support.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-header" style="margin-bottom:1.5rem">
+          <span class="label">Why UniLabs</span>
+          <h2 class="section-title">Why choose us?</h2>
+          <p class="section-desc">We combine the technical excellence of global manufacturers with the responsiveness of a local, dedicated team.</p>
+        </div>
+        <div class="expertise-features">
+          <div class="ef-item" data-reveal>
+            <div class="ef-check">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <h5>Direct manufacturer access</h5>
+              <p>As an authorised representative, we provide direct access to product specialists and factory support.</p>
+            </div>
+          </div>
+          <div class="ef-item" data-reveal>
+            <div class="ef-check">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <h5>Tailored solutions</h5>
+              <p>We never apply a one-size-fits-all approach — every recommendation is built around your specific application.</p>
+            </div>
+          </div>
+          <div class="ef-item" data-reveal>
+            <div class="ef-check">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <h5>Local presence, global reach</h5>
+              <p>Based in Dublin, we give Irish and European customers a responsive local point of contact backed by world-class technology.</p>
+            </div>
+          </div>
+          <div class="ef-item" data-reveal>
+            <div class="ef-check">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <h5>Academic & industrial expertise</h5>
+              <p>We support both research institutions and commercial organisations, bridging theory and practical deployment.</p>
+            </div>
+          </div>
+          <div class="ef-item" data-reveal>
+            <div class="ef-check">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <h5>Lifetime technical support</h5>
+              <p>Our relationship doesn't end at delivery — we provide ongoing support throughout your product's lifetime.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="text-align:center">
+      <span class="label">Applications</span>
+      <h2 class="section-title">Industries & applications we serve</h2>
+      <p class="section-desc" style="margin:0 auto">Our products and services are deployed across a wide range of sectors where precision photonics makes a critical difference.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,220px));gap:1.25rem;margin-top:3rem;justify-content:center;">
+      <div class="card" style="text-align:center;padding:1.75rem 1rem;" data-reveal>
+        <div style="font-size:2rem;margin-bottom:0.75rem">🏭</div>
+        <h4 style="font-size:0.95rem;margin-bottom:0.3rem;">Industrial Sensing</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted)">Gas detection, process monitoring, quality control</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1.75rem 1rem;" data-reveal>
+        <div style="font-size:2rem;margin-bottom:0.75rem">🔬</div>
+        <h4 style="font-size:0.95rem;margin-bottom:0.3rem;">Research & Academia</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted)">Spectroscopy, photonics labs, optical experiments</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1.75rem 1rem;" data-reveal>
+        <div style="font-size:2rem;margin-bottom:0.75rem">🏥</div>
+        <h4 style="font-size:0.95rem;margin-bottom:0.3rem;">Medical & Life Sciences</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted)">Breath analysis, diagnostics, tissue imaging</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1.75rem 1rem;" data-reveal>
+        <div style="font-size:2rem;margin-bottom:0.75rem">🌍</div>
+        <h4 style="font-size:0.95rem;margin-bottom:0.3rem;">Environmental Monitoring</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted)">Greenhouse gas detection, atmospheric sensing</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="background:linear-gradient(135deg,var(--accent),#0d4fd4);border-radius:var(--radius-lg);padding:3.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <h2 style="color:white;font-size:1.75rem;margin-bottom:0.5rem;">Ready to discuss your project?</h2>
+        <p style="color:rgba(255,255,255,0.75)">Our team is here to help you find the right photonics solution for your application.</p>
+      </div>
+      <a href="contact.html" class="btn btn-lg" style="background:white;color:var(--accent);">Get in Touch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.jpeg" alt="UniLabs Tech" class="footer-logo-img" />
+        </a>
+        <p>A trusted partner for photonics, lasers, detectors, and transducers. Based in Dublin, Ireland.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="products.html#lasers">Lasers</a></li>
+          <li><a href="products.html#detectors">Detectors</a></li>
+          <li><a href="products.html#transducers">Transducers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 unilabstech.com · All rights reserved · Trade as UniLabs (Reg. No. 734883)</span>
+      <span>Dublin, Ireland 🇮🇪</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

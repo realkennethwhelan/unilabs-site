@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" rx="20" fill="#e8f0f5"/>
+  <!-- 5 rounded bars, symmetric waveform pattern, matching the UniLabs logo mark -->
+  <!-- bar 1 (leftmost, shortest) -->
+  <rect x="8"  y="38" width="14" height="46" rx="7" fill="#1e3148"/>
+  <!-- bar 2 -->
+  <rect x="28" y="18" width="14" height="66" rx="7" fill="#1e3148"/>
+  <!-- bar 3 (center, tallest) -->
+  <rect x="43" y="8"  width="14" height="76" rx="7" fill="#1e3148"/>
+  <!-- bar 4 -->
+  <rect x="58" y="18" width="14" height="66" rx="7" fill="#1e3148"/>
+  <!-- bar 5 (rightmost, shortest) -->
+  <rect x="78" y="38" width="14" height="46" rx="7" fill="#1e3148"/>
+</svg>

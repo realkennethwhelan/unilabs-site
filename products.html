@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products | UniLabs Tech</title>
+  <meta name="description" content="Explore UniLabs' full range of photonics products: QCL lasers, infrared detectors, pressure transducers, and alignment systems from leading global brands." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Filter tabs ── */
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: white;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    /* ── Products grid ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 28px rgba(26,110,245,0.1);
+      transform: translateY(-2px);
+    }
+
+    .product-card-head {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      background: #f1f5f9;
+    }
+
+    .pc-head-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .pc-head-img {
+      transform: scale(1.05);
+    }
+
+    .product-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+
+    .product-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+    .product-tag {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-light);
+      padding: 0.22rem 0.6rem; border-radius: 4px;
+    }
+    .product-partner {
+      font-size: 0.72rem; color: var(--text-muted);
+    }
+
+    .product-card h3 { font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.4; }
+    .product-card .tagline {
+      font-size: 0.82rem; color: var(--accent);
+      font-style: italic; margin-bottom: 0.75rem;
+    }
+    .product-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; flex: 1; }
+
+    .product-card-foot {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+    }
+    .product-link {
+      font-size: 0.84rem; font-weight: 600;
+      color: var(--accent);
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: gap var(--transition);
+    }
+    .product-card:hover .product-link { gap: 10px; }
+
+    /* ── Category anchor sections ── */
+    .cat-section { margin-bottom: 4rem; }
+    .cat-section-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .cat-section-header h2 { font-size: 1.6rem; }
+    .cat-count {
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+    }
+
+    /* ── Partners section ── */
+    .partners-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.25rem;
+    }
+    .pcard {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .pcard:hover { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-2px); }
+    .pcard-emoji { font-size: 2.2rem; display: block; margin-bottom: 1rem; }
+    .pcard h4 { font-size: 1rem; margin-bottom: 0.3rem; }
+    .pcard p { font-size: 0.82rem; color: var(--text-muted); }
+
+    @media (max-width: 700px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .partners-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.jpeg" alt="UniLabs Tech" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="nav-cta"><a href="contact.html">Get in Touch</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="label">Product Portfolio</span>
+    <h1>Photonics solutions for every challenge</h1>
+    <p>From mid-infrared quantum cascade lasers to precision alignment systems, our product range — sourced from globally recognised partners — covers the full spectrum of photonics applications.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="section">
+  <div class="container">
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Products</button>
+      <button class="filter-btn" data-filter="laser">Lasers</button>
+      <button class="filter-btn" data-filter="detector">Detectors</button>
+      <button class="filter-btn" data-filter="transducer">Transducers</button>
+      <button class="filter-btn" data-filter="system">Systems</button>
+    </div>
+
+    <!-- LASERS -->
+    <div class="cat-section" id="lasers">
+      <div class="cat-section-header">
+        <div class="icon-box amber">
+          <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h2>Lasers</h2>
+        <span class="cat-count">5 products</span>
+      </div>
+      <div class="products-grid">
+
+        <div class="product-card" data-category="laser" data-reveal>
+          <div class="product-card-head">
+            <img src="assets/lasers.png" alt="DFB QCL Laser" class="pc-head-img" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-tag">Laser · Mid-IR</span>
+              <span class="product-partner">Alpes Lasers</span>
+            </div>
+            <h3>DFB Single-Mode QCL Lasers</h3>
+            <p class="tagline">Ultra-Narrow Linewidth for Sensitive Detection</p>
+            <p>Distributed feedback quantum cascade lasers delivering single-mode emission with ultra-narrow linewidth. Ideal for high-resolution molecular spectroscopy, trace gas detection, and environmental monitoring applications.</p>
+          </div>
+          <div class="product-card-foot">
+            <a href="contact.html" class="product-link">Enquire →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="laser" data-reveal>
+          <div class="product-card-head">
+            <img src="assets/lasers.png" alt="Frequency Comb QCL" class="pc-head-img" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-tag">Laser · Spectroscopy</span>
+              <span class="product-partner">Alpes Lasers</span>
+            </div>
+            <h3>Frequency Comb QCL Lasers</h3>
+            <p class="tagline">Revolutionising Dual-Comb Spectroscopy</p>
+            <p>Phase-locked frequency comb quantum cascade lasers with broad mid-IR spectral coverage. Enabling next-generation dual-comb spectroscopy for rapid, broadband molecular fingerprinting.</p>
+          </div>
+          <div class="product-card-foot">
+            <a href="contact.html" class="product-link">Enquire →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="laser" data-reveal>
+          <div class="product-card-head">
+            <img src="assets/lasers.png" alt="High-Power FP QCL" class="pc-head-img" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-tag">Laser · High-Power</span>
+              <span class="product-partner">Alpes Lasers</span>
+            </div>
+            <h3>High-Power Fabry-Perot QCL Lasers</h3>
+            <p class="tagline">Multi-Watt Performance for Demanding Applications</p>
+            <p>High-power Fabry-Perot quantum cascade lasers delivering multi-watt output for countermeasures, active illumination, and free-space optical communication across the mid-infrared spectrum.</p>
+          </div>
+          <div class="product-card-foot">
+            <a href="contact.html" class="product-link">Enquire →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="laser" data-reveal>
+          <div class="product-card-head">
+            <img src="assets/lasers.png" alt="QCL Laser Pointer" class="pc-head-img" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-tag">Laser · Alignment</span>
+              <span class="product-partner">Alpes Lasers</span>
+            </div>
+            <h3>QCL Laser Pointer</h3>
+            <p class="tagline">The Ultimate Mid-IR Alignment Tool</p>
+            <p>Compact mid-infrared laser pointer designed specifically for optical alignment tasks. Provides a reliable, easy-to-use beam source for aligning optical components and systems in the mid-IR range.</p>
+          </div>
+          <div class="product-card-foot">
+            <a href="contact.html" class="product-link">Enquire →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="laser" data-reveal>
+          <div class="product-card-head">
+            <img src="assets/lasers.png" alt="THz QCL" class="pc-head-img" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-tag">Laser · THz</span>
+              <span class="product-partner">Alpes Lasers</span>
+            </div>
+            <h3>THz Quantum Cascade Lasers</h3>
+            <p class="tagline">Bridging Microwave and Infrared</p>
+            <p>Terahertz quantum cascade lasers operating in the THz gap between microwave and infrared radiation. Suited for THz imaging, security screening, non-destructive testing, and fundamental research.</p>
+          </div>
+          <div class="product-card-foot">
+            <a href="contact.html" class="product-link">Enquire →</a>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /lasers -->
+
+    <!-- SYSTEMS -->
+    <div class="cat-section" id="systems">
+      <div class="cat-section-header">
+        <div class="icon-box purple">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h2>Laser Systems & Instruments</h2>
+        <span class="cat-count">2 products</span>
+      </div>
+      <div class="products-grid">
+
+        <div class="product-card" data-category="system" data-reveal>
+          <div class="product-card-head">
+            <img src="assets/detectors.png" alt="GLIDER System" class="pc-head-img" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-tag">System · Tunable</span>
+              <span class="product-partner">Sacher Lasertechnik</span>
+            </div>
+            <h3>GLIDER Widely Tunable Mid-IR Laser System</h3>
+            <p class="tagline">Transforming Mid-IR Spectroscopy</p>
+            <p>Advanced external cavity tunable laser system with broad wavelength coverage across the mid-infrared. The GLIDER enables high-resolution, mode-hop-free scanning for demanding spectroscopy and sensing applications.</p>
+          </div>
+          <div class="product-card-foot">
+            <a href="contact.html" class="product-link">Enquire →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="system" data-reveal>
+          <div class="product-card-head">
+            <img src="assets/lasers.png" alt="FLEX Alignment System" class="pc-head-img" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-tag">System · Alignment</span>
+              <span class="product-partner">Alpes Lasers</span>
+            </div>
+            <h3>FLEX 5-Axis Beam Alignment System</h3>
+            <p class="tagline">Micrometer-Level Accuracy for Optical Alignment</p>
+            <p>A five-axis motorised beam alignment platform enabling precise, repeatable positioning of optical beams with micrometer-level accuracy. Ideal for complex photonic system assembly, testing, and integration workflows.</p>
+          </div>
+          <div class="product-card-foot">
+            <a href="contact.html" class="product-link">Enquire →</a>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /systems -->
+
+    <!-- DETECTORS -->
+    <div class="cat-section" id="detectors">
+      <div class="cat-section-header">
+        <div class="icon-box blue">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h2>Detectors</h2>
+        <span class="cat-count">Vigo Photonics range</span>
+      </div>
+      <div class="products-grid">
+
+        <div class="product-card" data-category="detector" data-reveal>
+          <div class="product-card-head">
+            <img src="assets/detectors.png" alt="IR Detectors" class="pc-head-img" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-tag">Detector · IR</span>
+              <span class="product-partner">Vigo Photonics</span>
+            </div>
+            <h3>High-Performance Infrared Detectors</h3>
+            <p class="tagline">High Sensitivity Across the IR Spectrum</p>
+            <p>A comprehensive range of infrared photodetectors from Vigo Photonics, offering exceptional sensitivity, speed, and dynamic range for spectroscopy, sensing, imaging, and industrial monitoring in the mid-infrared range.</p>
+          </div>
+          <div class="product-card-foot">
+            <a href="contact.html" class="product-link">Enquire →</a>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /detectors -->
+
+    <!-- TRANSDUCERS -->
+    <div class="cat-section" id="transducers">
+      <div class="cat-section-header">
+        <div class="icon-box green">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <h2>Transducers</h2>
+        <span class="cat-count">Keller Pressure range</span>
+      </div>
+      <div class="products-grid">
+
+        <div class="product-card" data-category="transducer" data-reveal>
+          <div class="product-card-head">
+            <img src="assets/transducers.png" alt="Pressure Transducers" class="pc-head-img" style="object-position: center 30%; background:#f8f4e8;" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-tag">Transducer · Pressure</span>
+              <span class="product-partner">Keller Pressure</span>
+            </div>
+            <h3>Precision Pressure Transducers</h3>
+            <p class="tagline">Accurate Measurement Across All Applications</p>
+            <p>Keller Pressure transducers deliver highly accurate, reliable pressure measurement for industrial, research, and OEM applications. Available in a wide range of configurations, pressures, and output formats.</p>
+          </div>
+          <div class="product-card-foot">
+            <a href="contact.html" class="product-link">Enquire →</a>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /transducers -->
+
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:center">
+      <span class="label">Powered By</span>
+      <h2 class="section-title">Our technology partners</h2>
+      <p class="section-desc" style="margin:0 auto">We represent globally recognised manufacturers, providing local expertise and support throughout the entire buying journey.</p>
+    </div>
+    <div class="partners-cards">
+      <div class="pcard" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner2.jpeg" alt="Alpes Lasers" class="partner-logo-img" />
+        </div>
+        <h4>Alpes Lasers</h4>
+        <p>Cutting-edge QCL and mid-IR laser technology for spectroscopy and sensing</p>
+      </div>
+      <div class="pcard" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner3.png" alt="Sacher Lasertechnik" class="partner-logo-img" />
+        </div>
+        <h4>Sacher Lasertechnik</h4>
+        <p>Widely tunable external cavity laser systems for advanced spectroscopy</p>
+      </div>
+      <div class="pcard" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/parterlogo.png" alt="Vigo Photonics" class="partner-logo-img" />
+        </div>
+        <h4>Vigo Photonics</h4>
+        <p>High-performance infrared photodetectors for demanding sensing applications</p>
+      </div>
+      <div class="pcard" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/keller.png" alt="Keller" class="partner-logo-img" />
+        </div>
+        <h4>Keller</h4>
+        <p>Swiss-engineered precision pressure transducers for industrial and research use</p>
+      </div>
+      <div class="pcard" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner1.png" alt="SpectraSensors" class="partner-logo-img" />
+        </div>
+        <h4>SpectraSensors</h4>
+        <p>Advanced gas detection and laser-based analysis systems</p>
+      </div>
+      <div class="pcard" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner3-4.png" alt="Knestel" class="partner-logo-img" />
+        </div>
+        <h4>Knestel</h4>
+        <p>Precision measurement and sensor technology</p>
+      </div>
+      <div class="pcard" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner2-5.png" alt="Universität Würzburg" class="partner-logo-img" />
+        </div>
+        <h4>Universität Würzburg</h4>
+        <p>Academic research and collaboration partner</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner" style="background:linear-gradient(135deg,var(--accent),#0d4fd4);border-radius:var(--radius-lg);padding:3.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <h2 style="color:white;font-size:1.75rem;margin-bottom:0.5rem;">Can't find what you need?</h2>
+        <p style="color:rgba(255,255,255,0.75)">Get in touch — we'll help you find the right solution for your application.</p>
+      </div>
+      <a href="contact.html" class="btn btn-lg" style="background:white;color:var(--accent);">Contact Us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.jpeg" alt="UniLabs Tech" class="footer-logo-img" />
+        </a>
+        <p>A trusted partner for photonics, lasers, detectors, and transducers. Based in Dublin, Ireland.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="#lasers">Lasers</a></li>
+          <li><a href="#systems">Systems</a></li>
+          <li><a href="#detectors">Detectors</a></li>
+          <li><a href="#transducers">Transducers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 unilabstech.com · All rights reserved · Trade as UniLabs (Reg. No. 734883)</span>
+      <span>Dublin, Ireland 🇮🇪</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

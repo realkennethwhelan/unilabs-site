@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniLabs Tech | Photonics & Laser Solutions</title>
+  <meta name="description" content="UniLabs is a Dublin-based representative agency supplying lasers, detectors, and transducers with expert optical engineering consultation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(140deg, #0a1628 0%, #0d2045 55%, #091320 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 60px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(26,110,245,0.18) 0%, transparent 65%);
+      top: -160px; right: -120px; border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 65%);
+      bottom: -80px; left: 8%; border-radius: 50%;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(26,110,245,0.15);
+      border: 1px solid rgba(26,110,245,0.3);
+      color: #60a5fa;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 0.38rem 0.9rem;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: #60a5fa;
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.13;
+      letter-spacing: -0.035em;
+      margin-bottom: 1.35rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #60a5fa, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-num {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.03em;
+    }
+    .stat-label { font-size: 0.78rem; color: #64748b; margin-top: 0.15rem; }
+
+    /* Hero visual */
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+    .orbit-rig { width: 380px; height: 380px; position: relative; }
+    .orbit {
+      position: absolute;
+      border: 1px solid rgba(26,110,245,0.2);
+      border-radius: 50%;
+    }
+    .orbit:nth-child(1) { inset: 0; animation: spin 22s linear infinite; }
+    .orbit:nth-child(2) { inset: 15%; animation: spin 15s linear infinite reverse; }
+    .orbit:nth-child(3) { inset: 30%; animation: spin 9s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .orbit-dot {
+      position: absolute;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      top: -5px; left: 50%;
+      transform: translateX(-50%);
+    }
+    .orbit:nth-child(1) .orbit-dot { background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+    .orbit:nth-child(2) .orbit-dot { background: #06b6d4; box-shadow: 0 0 14px #06b6d4; }
+    .orbit:nth-child(3) .orbit-dot { background: #8b5cf6; box-shadow: 0 0 14px #8b5cf6; }
+    .orbit-center {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .orbit-core {
+      width: 84px; height: 84px;
+      background: linear-gradient(135deg, var(--accent), #06b6d4);
+      border-radius: 22px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 50px rgba(26,110,245,0.5);
+    }
+    .orbit-core svg { width: 42px; height: 42px; fill: white; }
+
+    /* ── Product categories (home) ── */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .cat-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all var(--transition);
+    }
+    .cat-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(26,110,245,0.1);
+      transform: translateY(-3px);
+    }
+    .cat-card-img {
+      width: calc(100% + 4rem);
+      height: 160px;
+      object-fit: cover;
+      object-position: center;
+      margin: -2rem -2rem 1.25rem;
+      display: block;
+      border-radius: var(--radius) var(--radius) 0 0;
+      transition: transform 0.4s ease;
+    }
+    .cat-card:hover .cat-card-img { transform: scale(1.04); }
+    .cat-card { overflow: hidden; }
+
+    .cat-card h3 { font-size: 1.15rem; margin: 0 0 0.5rem; }
+    .cat-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; }
+    .cat-card .cat-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.84rem; font-weight: 600; color: var(--accent);
+      margin-top: 1rem;
+      transition: gap var(--transition);
+    }
+    .cat-card:hover .cat-link { gap: 10px; }
+
+    /* ── Featured products (home) ── */
+    .fp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+    .fp-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: all var(--transition);
+    }
+    .fp-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(26,110,245,0.08);
+    }
+    .fp-tag {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-light);
+      padding: 0.22rem 0.6rem; border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .fp-card h4 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .fp-card p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── Services strip (home) ── */
+    .services-strip {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .svc-list { display: flex; flex-direction: column; gap: 1.1rem; }
+    .svc-item {
+      display: flex; gap: 1rem;
+      padding: 1.4rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      transition: all var(--transition);
+    }
+    .svc-item:hover { border-color: var(--accent); }
+    .svc-item h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .svc-item p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; }
+
+    .svc-panel {
+      background: linear-gradient(140deg, var(--primary), var(--primary-light));
+      border-radius: var(--radius-lg);
+      padding: 2.75rem;
+      color: #94a3b8;
+    }
+    .svc-panel h3 { font-size: 1.5rem; color: white; margin-bottom: 1rem; line-height: 1.35; }
+    .svc-panel p { font-size: 0.9rem; line-height: 1.8; margin-bottom: 1.5rem; }
+    .svc-bullets { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 2rem; }
+    .svc-bullet {
+      display: flex; align-items: center; gap: 0.65rem;
+      font-size: 0.875rem; color: #cbd5e1;
+    }
+    .svc-bullet::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: #60a5fa; border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* ── Partners ── */
+    .partners-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.25rem;
+    }
+    .partner-tile {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .partner-tile:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+    .partner-emoji { font-size: 2rem; margin-bottom: 0.85rem; display: block; }
+    .partner-tile h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .partner-tile p { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ── CTA banner ── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--accent), #0d4fd4);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .cta-banner h2 { font-size: 1.75rem; color: white; margin-bottom: 0.5rem; }
+    .cta-banner p { color: rgba(255,255,255,0.75); font-size: 1rem; }
+
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-visual { display: none; }
+      .hero-btns { justify-content: center; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-stats { justify-content: center; }
+      .cat-grid { grid-template-columns: 1fr; }
+      .services-strip { grid-template-columns: 1fr; }
+      .partners-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .partners-strip { grid-template-columns: repeat(2, 1fr); }
+      .cta-banner { text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.jpeg" alt="UniLabs Tech" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="nav-cta"><a href="contact.html">Get in Touch</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">Trusted Photonics Partner · Dublin, Ireland</div>
+        <h1>Enrich your business with our <em>expertise</em></h1>
+        <p class="hero-desc">As a representative agency for our branded partners, UniLabs provides customers with lasers, detectors, and transducers — along with comprehensive business support and optical engineering services.</p>
+        <div class="hero-btns">
+          <a href="products.html" class="btn btn-primary btn-lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Explore Products
+          </a>
+          <a href="contact.html" class="btn btn-ghost btn-lg">Contact Us</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">2+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div>
+            <div class="stat-num">4</div>
+            <div class="stat-label">Brand Partners</div>
+          </div>
+          <div>
+            <div class="stat-num">7+</div>
+            <div class="stat-label">Product Lines</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="orbit-rig">
+          <div class="orbit"><div class="orbit-dot"></div></div>
+          <div class="orbit"><div class="orbit-dot"></div></div>
+          <div class="orbit"><div class="orbit-dot"></div></div>
+          <div class="orbit-center">
+            <div class="orbit-core">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT CATEGORIES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Product Portfolio</span>
+      <h2 class="section-title">Precision photonics for every application</h2>
+      <p class="section-desc">From quantum cascade lasers to high-sensitivity detectors, we supply the components that power cutting-edge research, medicine, and industry.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" data-reveal>
+        <img src="assets/lasers.png" alt="Lasers" class="cat-card-img" />
+        <h3>Lasers</h3>
+        <p>Precise and stable light sources including mid-IR quantum cascade lasers and THz systems for industrial, medical, and research applications.</p>
+        <a href="products.html#lasers" class="cat-link">View lasers →</a>
+      </div>
+      <div class="cat-card" data-reveal>
+        <img src="assets/detectors.png" alt="Detectors" class="cat-card-img" />
+        <h3>Detectors</h3>
+        <p>Convert light, radiation, or other signals into measurable electrical outputs with high sensitivity and accuracy for demanding sensing tasks.</p>
+        <a href="products.html#detectors" class="cat-link">View detectors →</a>
+      </div>
+      <div class="cat-card" data-reveal>
+        <img src="assets/transducers.png" alt="Transducers" class="cat-card-img" />
+        <h3>Transducers</h3>
+        <p>Transform one form of energy into another, enabling accurate measurement and control across a wide range of engineering systems.</p>
+        <a href="products.html#transducers" class="cat-link">View transducers →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <span class="label">Featured Products</span>
+        <h2 class="section-title" style="margin-bottom:0">Our flagship solutions</h2>
+      </div>
+      <a href="products.html" class="btn btn-outline">View all products →</a>
+    </div>
+    <div class="fp-grid">
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">Laser</span>
+        <h4>DFB Single-Mode QCL Lasers</h4>
+        <p>Ultra-narrow linewidth quantum cascade lasers optimised for sensitive detection and high-resolution spectroscopy.</p>
+      </div>
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">Laser</span>
+        <h4>GLIDER Widely Tunable Mid-IR System</h4>
+        <p>Transforming mid-IR spectroscopy with advanced external cavity technology for broad wavelength tunability.</p>
+      </div>
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">Laser</span>
+        <h4>THz Quantum Cascade Lasers</h4>
+        <p>Bridging microwave and infrared with terahertz QCL technology for imaging, sensing, and security screening.</p>
+      </div>
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">Alignment</span>
+        <h4>FLEX 5-Axis Beam Alignment System</h4>
+        <p>Micrometer-level accuracy for complex optical system alignment, enabling rapid and repeatable positioning.</p>
+      </div>
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">Laser</span>
+        <h4>Frequency Comb QCL Lasers</h4>
+        <p>Revolutionising dual-comb spectroscopy with broad spectral coverage and phase-coherent operation.</p>
+      </div>
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">Laser</span>
+        <h4>High-Power Fabry-Perot QCL</h4>
+        <p>Multi-watt performance for countermeasures, illumination, and free-space optical communication.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="services-strip">
+      <div class="svc-list">
+        <div class="section-header" style="margin-bottom:1.75rem">
+          <span class="label">Services</span>
+          <h2 class="section-title">Optical engineering & consultation</h2>
+          <p class="section-desc">Our team of experienced professionals is ready to collaborate on creating optical designs and products that meet your exact needs.</p>
+        </div>
+        <div class="svc-item" data-reveal>
+          <div class="icon-box grad">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <div>
+            <h4>Optical Design Consultation</h4>
+            <p>Tailored optical system design from initial specification through to full implementation and validation.</p>
+          </div>
+        </div>
+        <div class="svc-item" data-reveal>
+          <div class="icon-box grad">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <h4>Polarisation & Crystal Optics</h4>
+            <p>Expertise in polarisation studies, Jones matrix applications, and photonic research education.</p>
+          </div>
+        </div>
+        <div class="svc-item" data-reveal>
+          <div class="icon-box grad">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <h4>Business Support</h4>
+            <p>Comprehensive support including product selection, procurement, after-sales, and technical assistance.</p>
+          </div>
+        </div>
+        <a href="services.html" class="btn btn-primary" style="align-self:flex-start;margin-top:0.5rem;">Learn more about services →</a>
+      </div>
+
+      <div class="svc-panel">
+        <h3>Your trusted photonics partner in Ireland</h3>
+        <p>Based in Dublin, we work closely with clients to understand their requirements and deliver customised solutions that exceed expectations. With direct access to leading photonics brands, we bridge the gap between manufacturers and end users.</p>
+        <div class="svc-bullets">
+          <div class="svc-bullet">Mid-IR & THz laser spectroscopy support</div>
+          <div class="svc-bullet">Optical system design from concept to delivery</div>
+          <div class="svc-bullet">Academic and industrial application expertise</div>
+          <div class="svc-bullet">Direct partnerships with global photonics manufacturers</div>
+          <div class="svc-bullet">Dedicated after-sales and technical support</div>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Talk to our team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="text-align:center">
+      <span class="label">Powered By</span>
+      <h2 class="section-title">Our technology partners</h2>
+      <p class="section-desc" style="margin:0 auto">We represent world-class brands, giving you direct access to the latest photonics technologies.</p>
+    </div>
+    <div class="partners-strip">
+      <div class="partner-tile" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner2.jpeg" alt="Alpes Lasers" class="partner-logo-img" />
+        </div>
+        <h4>Alpes Lasers</h4>
+        <p>Mid-IR quantum cascade lasers</p>
+      </div>
+      <div class="partner-tile" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner3.png" alt="Sacher Lasertechnik" class="partner-logo-img" />
+        </div>
+        <h4>Sacher Lasertechnik</h4>
+        <p>Widely tunable laser systems</p>
+      </div>
+      <div class="partner-tile" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/parterlogo.png" alt="Vigo Photonics" class="partner-logo-img" />
+        </div>
+        <h4>Vigo Photonics</h4>
+        <p>High-performance IR detectors</p>
+      </div>
+      <div class="partner-tile" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/keller.png" alt="Keller" class="partner-logo-img" />
+        </div>
+        <h4>Keller</h4>
+        <p>Precision pressure transducers</p>
+      </div>
+      <div class="partner-tile" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner1.png" alt="SpectraSensors" class="partner-logo-img" />
+        </div>
+        <h4>SpectraSensors</h4>
+        <p>Gas detection &amp; analysis systems</p>
+      </div>
+      <div class="partner-tile" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner3-4.png" alt="Knestel" class="partner-logo-img" />
+        </div>
+        <h4>Knestel</h4>
+        <p>Precision measurement technology</p>
+      </div>
+      <div class="partner-tile" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner2-5.png" alt="Universität Würzburg" class="partner-logo-img" />
+        </div>
+        <h4>Universität Würzburg</h4>
+        <p>Academic research partner</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="cta-banner">
+      <div>
+        <h2>Ready to talk about your project?</h2>
+        <p>Our team is here to help you find the right photonics solution.</p>
+      </div>
+      <a href="contact.html" class="btn btn-lg" style="background:white;color:var(--accent);">Get in Touch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.jpeg" alt="UniLabs Tech" class="footer-logo-img" />
+        </a>
+        <p>A trusted partner for photonics, lasers, detectors, and transducers. Based in Dublin, Ireland.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="products.html#lasers">Lasers</a></li>
+          <li><a href="products.html#detectors">Detectors</a></li>
+          <li><a href="products.html#transducers">Transducers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 unilabstech.com · All rights reserved · Trade as UniLabs (Reg. No. 734883)</span>
+      <span>Dublin, Ireland 🇮🇪</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

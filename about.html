@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | UniLabs Tech</title>
+  <meta name="description" content="Learn about UniLabs — a Dublin-based photonics company with 2+ years of experience representing leading laser and detector manufacturers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Story section ── */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .story-text h2 { margin-bottom: 1.25rem; }
+    .story-text p { font-size: 1rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 1.1rem; }
+
+    .story-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .stat-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: all var(--transition);
+    }
+    .stat-box:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+    .stat-box-num {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      min-width: 60px;
+    }
+    .stat-box-label { font-size: 0.9rem; color: var(--text-muted); line-height: 1.4; }
+    .stat-box-label strong { display: block; font-size: 1rem; color: var(--primary); margin-bottom: 0.1rem; }
+
+    /* ── Values ── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .value-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all var(--transition);
+    }
+    .value-card:hover { border-color: var(--accent); box-shadow: 0 6px 28px rgba(26,110,245,0.1); transform: translateY(-2px); }
+    .value-card h3 { font-size: 1.05rem; margin: 1.1rem 0 0.6rem; }
+    .value-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; }
+
+    /* ── Timeline ── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px; top: 6px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item { position: relative; margin-bottom: 2.25rem; }
+    .timeline-dot {
+      position: absolute;
+      left: -2rem; top: 4px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .timeline-year {
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-item h4 { font-size: 0.95rem; margin-bottom: 0.35rem; }
+    .timeline-item p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── Legal card ── */
+    .legal-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .legal-item {}
+    .legal-item .legal-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .legal-item .legal-value { font-size: 0.95rem; font-weight: 600; color: var(--primary); }
+
+    /* ── Partners ── */
+    .partner-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.25rem;
+    }
+    .partner-mini {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .partner-mini:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+    .partner-mini .em { font-size: 1.75rem; display: block; margin-bottom: 0.6rem; }
+    .partner-mini h4 { font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .partner-mini p { font-size: 0.78rem; color: var(--text-muted); }
+
+    @media (max-width: 960px) {
+      .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .values-grid { grid-template-columns: 1fr; }
+      .partner-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.jpeg" alt="UniLabs Tech" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="nav-cta"><a href="contact.html">Get in Touch</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="label">About UniLabs</span>
+    <h1>A trusted brand that delivers quality every time</h1>
+    <p>Based in Dublin, Ireland, UniLabs is a representative agency specialising in photonics — connecting customers with the world's leading laser, detector, and transducer manufacturers.</p>
+  </div>
+</div>
+
+<!-- OUR STORY -->
+<section class="section">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-text" data-reveal>
+        <span class="label">Our Story</span>
+        <h2 class="section-title">Who we are</h2>
+        <p>UniLabs was founded with a clear mission: to bring the highest quality photonics technology to customers in Ireland and beyond, backed by genuine technical expertise and responsive local support.</p>
+        <p>As an authorised representative agency, we act as the direct point of contact for a select group of globally recognised photonics manufacturers. This means our customers get the best of both worlds — world-class products and a dedicated local team that understands their needs.</p>
+        <p>Our team consists of experienced professionals with backgrounds in optical physics, photonics engineering, and technical sales. We don't just sell products — we understand them, and we work alongside our customers to ensure every solution we provide truly fits their application.</p>
+        <div style="margin-top:1.75rem; padding:1.5rem; background:var(--accent-light); border-left:3px solid var(--accent); border-radius:0 var(--radius-sm) var(--radius-sm) 0;">
+          <p style="color:var(--primary);font-weight:500;font-style:italic;margin:0">"We work closely with our clients to understand their needs and provide tailored solutions that exceed their expectations."</p>
+        </div>
+      </div>
+
+      <div class="story-visual" data-reveal>
+        <div class="stat-box">
+          <div class="stat-box-num">2+</div>
+          <div class="stat-box-label">
+            <strong>Years of Experience</strong>
+            Delivering photonics solutions to clients across Ireland and Europe
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">4</div>
+          <div class="stat-box-label">
+            <strong>Technology Partners</strong>
+            Globally recognised manufacturers across lasers, detectors, and transducers
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">7+</div>
+          <div class="stat-box-label">
+            <strong>Product Lines</strong>
+            From DFB QCL lasers to THz systems and 5-axis alignment platforms
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">IE</div>
+          <div class="stat-box-label">
+            <strong>Based in Dublin, Ireland</strong>
+            Serving customers with local expertise and responsiveness
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:center">
+      <span class="label">Our Values</span>
+      <h2 class="section-title">What drives us</h2>
+      <p class="section-desc" style="margin:0 auto">Everything we do is guided by a commitment to quality, honesty, and genuine partnership with our customers.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card" data-reveal>
+        <div class="icon-box blue">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        </div>
+        <h3>Quality Without Compromise</h3>
+        <p>We represent only manufacturers whose products meet the highest standards of precision, reliability, and performance. Quality is non-negotiable in everything we supply and every service we provide.</p>
+      </div>
+      <div class="value-card" data-reveal>
+        <div class="icon-box amber">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Client-Centric Partnership</h3>
+        <p>Our approach is always tailored to the individual. We take time to understand each customer's unique requirements and build long-term relationships based on trust, transparency, and genuine care.</p>
+      </div>
+      <div class="value-card" data-reveal>
+        <div class="icon-box green">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Responsiveness & Reliability</h3>
+        <p>We understand that time matters in research and industry. Our team is committed to responding quickly and following through on every commitment — from initial enquiry to long-term support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MILESTONES -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;">
+      <div>
+        <span class="label">Our Journey</span>
+        <h2 class="section-title" style="margin-bottom:2rem">How we got here</h2>
+        <div class="timeline">
+          <div class="timeline-item" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2022</div>
+            <h4>UniLabs Founded</h4>
+            <p>UniLabs was established in Dublin, Ireland, with a focus on bringing precision photonics technology to the Irish and European market.</p>
+          </div>
+          <div class="timeline-item" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2023</div>
+            <h4>First Partner Agreements</h4>
+            <p>Signed representative agreements with Aples Lasers and Vigo Photonics, establishing our first product portfolio in mid-IR lasers and infrared detectors.</p>
+          </div>
+          <div class="timeline-item" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2024</div>
+            <h4>Portfolio Expansion</h4>
+            <p>Added Sacher Lasertechnik and Keller Pressure to our partner network, broadening our offering to include tunable laser systems and precision transducers.</p>
+          </div>
+          <div class="timeline-item" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2025</div>
+            <h4>Growing Team & Services</h4>
+            <p>Expanded our consultation and optical engineering services, deepening our technical capability and building lasting relationships with research and industrial customers.</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal>
+        <span class="label">Legal Information</span>
+        <h2 class="section-title" style="margin-bottom:1.5rem">Company registration</h2>
+        <div class="legal-card">
+          <div class="legal-item">
+            <div class="legal-label">Trade Name</div>
+            <div class="legal-value">UniLabs</div>
+          </div>
+          <div class="legal-item">
+            <div class="legal-label">Registration No.</div>
+            <div class="legal-value">734883</div>
+          </div>
+          <div class="legal-item">
+            <div class="legal-label">Location</div>
+            <div class="legal-value">Dublin, Ireland</div>
+          </div>
+          <div class="legal-item">
+            <div class="legal-label">Website</div>
+            <div class="legal-value">unilabstech.com</div>
+          </div>
+          <div class="legal-item">
+            <div class="legal-label">Industry</div>
+            <div class="legal-value">Photonics & Optics</div>
+          </div>
+          <div class="legal-item">
+            <div class="legal-label">Year Established</div>
+            <div class="legal-value">2022</div>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem;padding:1.5rem;border:1px solid var(--border);border-radius:var(--radius);">
+          <h4 style="margin-bottom:0.85rem;font-size:1rem;">Get in touch with our team</h4>
+          <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.25rem">Have a question about our products, services, or want to discuss a potential project? We'd love to hear from you.</p>
+          <a href="contact.html" class="btn btn-primary">Contact Us →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:center">
+      <span class="label">Our Partners</span>
+      <h2 class="section-title">The brands we represent</h2>
+      <p class="section-desc" style="margin:0 auto">We're proud to represent these globally recognised manufacturers, providing our customers with direct access to world-class photonics technology.</p>
+    </div>
+    <div class="partner-row">
+      <div class="partner-mini" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner2.jpeg" alt="Alpes Lasers" class="partner-logo-img" />
+        </div>
+        <h4>Alpes Lasers</h4>
+        <p>Mid-IR and THz quantum cascade lasers</p>
+      </div>
+      <div class="partner-mini" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner3.png" alt="Sacher Lasertechnik" class="partner-logo-img" />
+        </div>
+        <h4>Sacher Lasertechnik</h4>
+        <p>Widely tunable diode laser systems</p>
+      </div>
+      <div class="partner-mini" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/parterlogo.png" alt="Vigo Photonics" class="partner-logo-img" />
+        </div>
+        <h4>Vigo Photonics</h4>
+        <p>High-performance IR photodetectors</p>
+      </div>
+      <div class="partner-mini" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/keller.png" alt="Keller" class="partner-logo-img" />
+        </div>
+        <h4>Keller</h4>
+        <p>Precision pressure transducers</p>
+      </div>
+      <div class="partner-mini" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner1.png" alt="SpectraSensors" class="partner-logo-img" />
+        </div>
+        <h4>SpectraSensors</h4>
+        <p>Laser-based gas detection systems</p>
+      </div>
+      <div class="partner-mini" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner3-4.png" alt="Knestel" class="partner-logo-img" />
+        </div>
+        <h4>Knestel</h4>
+        <p>Precision measurement technology</p>
+      </div>
+      <div class="partner-mini" data-reveal>
+        <div class="partner-logo-wrap">
+          <img src="assets/partner2-5.png" alt="Universität Würzburg" class="partner-logo-img" />
+        </div>
+        <h4>Universität Würzburg</h4>
+        <p>Academic research partner</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container">
+    <div style="background:linear-gradient(135deg,var(--accent),#0d4fd4);border-radius:var(--radius-lg);padding:3.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <h2 style="color:white;font-size:1.75rem;margin-bottom:0.5rem;">Let's work together</h2>
+        <p style="color:rgba(255,255,255,0.75)">Whether you need a product, a consultation, or just some advice — we're here to help.</p>
+      </div>
+      <a href="contact.html" class="btn btn-lg" style="background:white;color:var(--accent);">Get in Touch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.jpeg" alt="UniLabs Tech" class="footer-logo-img" />
+        </a>
+        <p>A trusted partner for photonics, lasers, detectors, and transducers. Based in Dublin, Ireland.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="products.html#lasers">Lasers</a></li>
+          <li><a href="products.html#detectors">Detectors</a></li>
+          <li><a href="products.html#transducers">Transducers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 unilabstech.com · All rights reserved · Trade as UniLabs (Reg. No. 734883)</span>
+      <span>Dublin, Ireland 🇮🇪</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
