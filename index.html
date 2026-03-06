@@ -132,13 +132,13 @@
       display: flex; align-items: center; justify-content: center;
     }
     .orbit-core {
-      width: 84px; height: 84px;
+      width: 96px; height: 96px;
       background: linear-gradient(135deg, var(--accent), #06b6d4);
-      border-radius: 22px;
+      border-radius: 24px;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 50px rgba(26,110,245,0.5);
+      box-shadow: 0 0 60px rgba(26,110,245,0.55), 0 0 120px rgba(6,182,212,0.2);
     }
-    .orbit-core svg { width: 42px; height: 42px; fill: white; }
+    .orbit-core svg { width: 60px; height: 60px; }
 
     /* ── Product categories (home) ── */
     .cat-grid {
@@ -337,20 +337,6 @@
           </a>
           <a href="contact.html" class="btn btn-ghost btn-lg">Contact Us</a>
         </div>
-        <div class="hero-stats">
-          <div>
-            <div class="stat-num">2+</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div>
-            <div class="stat-num">4</div>
-            <div class="stat-label">Brand Partners</div>
-          </div>
-          <div>
-            <div class="stat-num">7+</div>
-            <div class="stat-label">Product Lines</div>
-          </div>
-        </div>
       </div>
 
       <div class="hero-visual">
@@ -360,7 +346,13 @@
           <div class="orbit"><div class="orbit-dot"></div></div>
           <div class="orbit-center">
             <div class="orbit-core">
-              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8"  y="38" width="14" height="46" rx="7" fill="white" opacity="0.95"/>
+                <rect x="28" y="18" width="14" height="66" rx="7" fill="white" opacity="0.95"/>
+                <rect x="43" y="8"  width="14" height="76" rx="7" fill="white" opacity="0.95"/>
+                <rect x="58" y="18" width="14" height="66" rx="7" fill="white" opacity="0.95"/>
+                <rect x="78" y="38" width="14" height="46" rx="7" fill="white" opacity="0.95"/>
+              </svg>
             </div>
           </div>
         </div>
